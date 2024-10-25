@@ -45,6 +45,7 @@ console.log(
   `La bicicletta più pesante è la ${nameHeavierBicycles} con ${weightHeavierBicycles}kg`
 );
 
+console.log("***********************************************************");
 // ! SNACK 2
 /* 
 Snack 2
@@ -110,9 +111,42 @@ for (const squad of footballSquads) {
 console.log(footballSquads);
 console.log(footballSquadsFouls);
 
+console.log("***********************************************************");
 // ! SNACK 3
 /* 
 Snack 3 (Bonus)
 Scrivere una funzione che accetti tre argomenti, un array e due numeri (a più piccolo di b).
 La funzione ritornerà un nuovo array con i valori che hanno la posizione compresa tra i due numeri.
 */
+
+const createArray = (totPosArray) => {
+  const newArray = [];
+  for (let i = 0; i < totPosArray; i++) {
+    newArray.push(numberRandomizer(1, 50));
+  }
+  return newArray;
+};
+
+const valuesBetweenRange = (array, numA, numB) => {
+  const valuesBetweenRange = [];
+
+  if (numA < 0 || numB < 0 || numA > numB || numB > array.length - 1) {
+    return console.error(
+      `i numeri inseriti non sono validi:
+      - inserisci numeri maggiori di 0 per il range,
+      - il primo numero deve essere maggiore del secondo
+      - il secondo numero non può essere uguale o maggiore della lunghezza dell'array`
+    );
+  }
+
+  for (let i = numA + 1; i < numB; i++) {
+    let currentValue = array[i];
+    valuesBetweenRange.push(currentValue);
+  }
+  return valuesBetweenRange;
+};
+
+const numberOfPosArray = 10;
+const arrayOfNumbers = createArray(numberOfPosArray);
+console.log(arrayOfNumbers);
+console.log(valuesBetweenRange(arrayOfNumbers, 0, 9));

@@ -149,4 +149,4 @@ const valuesBetweenRange = (array, numA, numB) => {
 const numberOfPosArray = 10;
 const arrayOfNumbers = createArray(numberOfPosArray);
 console.log(arrayOfNumbers);
-console.log(valuesBetweenRange(arrayOfNumbers, 0, 9));
+console.log(valuesBetweenRange(arrayOfNumbers, 2, 6));

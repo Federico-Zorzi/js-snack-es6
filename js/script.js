@@ -1,5 +1,5 @@
 const numberRandomizer = (min, max) => {
-  return Math.floor(Math.random() * max - min + min);
+  return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
 // ! SNACK 1
@@ -33,7 +33,7 @@ const bicycles = [
 ];
 
 for (const bike of bicycles) {
-  bike.weight = numberRandomizer(1, 50);
+  bike.weight = numberRandomizer(0, 50);
   if (bike.weight > weightHeavierBicycles) {
     weightHeavierBicycles = bike.weight;
     nameHeavierBicycles = bike.name;
@@ -98,14 +98,13 @@ const footballSquadsFouls = [];
 
 for (const squad of footballSquads) {
   //randomizzazione punti e falli per ogni singola squadra
-  squad.points = numberRandomizer(1, 50);
-  squad.foul = numberRandomizer(1, 50);
+  squad.points = numberRandomizer(0, 50);
+  squad.foul = numberRandomizer(0, 50);
 
   // destrutturazione di ogni singolo oggetto presente nell'array
   const { name, foul } = squad;
   // creazione nuovo array di oggetti con solo nomi e falli delle squadre
-  let newFootballSquadsArrayEl = { name, foul };
-  footballSquadsFouls.push(newFootballSquadsArrayEl);
+  footballSquadsFouls.push({ name, foul });
 }
 
 console.log(footballSquads);
@@ -122,26 +121,31 @@ La funzione ritornerà un nuovo array con i valori che hanno la posizione compre
 const createArray = (totPosArray) => {
   const newArray = [];
   for (let i = 0; i < totPosArray; i++) {
-    newArray.push(numberRandomizer(1, 50));
+    newArray.push(numberRandomizer(0, 50));
   }
   return newArray;
 };
 
-const valuesBetweenRange = (array, numA, numB) => {
+const valuesBetweenRange = (array, minIndex, maxIndex) => {
   const valuesBetweenRange = [];
 
-  if (numA < 0 || numB < 0 || numA > numB || numB > array.length - 1) {
-    return console.error(
+  if (
+    minIndex < 0 ||
+    maxIndex < 0 ||
+    minIndex > maxIndex ||
+    maxIndex > array.length - 1
+  ) {
+    console.error(
       `i numeri inseriti non sono validi:
       - inserisci numeri maggiori di 0 per il range,
       - il primo numero deve essere maggiore del secondo
       - il secondo numero non può essere uguale o maggiore della lunghezza dell'array`
     );
+    return;
   }
 
-  for (let i = numA + 1; i < numB; i++) {
-    let currentValue = array[i];
-    valuesBetweenRange.push(currentValue);
+  for (let i = minIndex + 1; i < maxIndex; i++) {
+    valuesBetweenRange.push(array[i]);
   }
   return valuesBetweenRange;
 };
